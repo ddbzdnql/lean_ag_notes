@@ -1,0 +1,60 @@
+\chapter{Category Theory Primer}
+\label{cha:category-theory-primer}
+
+\begin{definition}
+    A \textbf{category} is a collection of \textbf{objects} and \textbf{morphisms} between the objects.\\
+    The morphisms are also called maps or arrows.\\
+    For notations, a category is usually denoted $\cC$ and for objects $A, B \in \cC$, the set of morphisms between $A$ and $B$ is denoted by $\text{Mor}(A, B)$.\\
+    The associativity and composite of morphisms work as expected. One thing that needs to be noted is the concept of \textbf{identity morphisms}, where an identity morphism on $A \in \cC$, denoted $\text{id}_A: A \rightarrow A$ is defined as the morphism such that for any $f: A \rightarrow B$ and $g: B \rightarrow C$, we have that $\text{id}_B \circ f = f$ and $g \circ \text{id}_B = g$.\\
+    From this we derive isomorphisms, where $A, B \in \cC$ are \textbf{isomorphic} if there exists $f: A \rightarrow B$ and $g: B \rightarrow A$ s.t. $f \circ g = \text{id}_B$ and $g \circ f = \text{id}_A$.
+\end{definition}
+
+\begin{proposition}[FoAG 1.1.A]
+    \label{prop:group_eqv_one_obj_groupoid}
+    \lean{CategoryPrimer.groupEquivSingletonGroupoid}
+    \leanok
+    A group translates to the exact same thing as a category with one object where all morphisms are isomorphisms (i.e., a groupoid with one object).
+    More precisely, the set of endomorphisms of the unique object in a one-object groupoid forms a group under composition.
+\end{proposition}
+
+\begin{proof}
+    % 在这里写下你的纸笔 LaTeX 证明！
+    We give how to construct a singleton groupoid $\cC$ from a group $G$ and vice versa. That these two operations are `inverse' is procedural and therefore is assumed without proof.\\ 
+    Given a group $G$, we construct a groupoid $\cG$, where $\forall x \in G$, we say $x$ is also a morphism of $\cG$. The composite is defined by
+    \eqs{
+        \forall x, y \in G, x \circ y = x \cdot y
+    }
+    We note this construction establishes $1 \in G$ as $\text{id} \in \cG$:
+    \eqs{
+        \forall x, y \in G, x \circ 1 = x \cdot 1 = x, 1 \circ y = 1 \cdot y = y
+    }
+    Furthermore, we note this makes every $x \in G$ an ismoprhism in $\cG$:
+    \eqs{
+        \forall x \in G, \exists x^{-1} \in G s.t. x \cdot x^{-1} = x^{-1} \cdot x = 1 \Rightarrow x \circ x^{-1} = x^{-1} \circ x = \text{id} \in \cG
+    }
+    Therefore, we conclude that $\cG$ is a valid category with only one object, and that since we have shown that every morphism ($x \in G$) is an isomorphism, we conclude it is actually a groupoid.\\
+    That a singleton groupoid derives a group is similarly shown by defining the group operation through composite, and $1$ as the $\text{id} \in \cG$.
+    \leanokcomplex
+\end{proof}
+
+\begin{proposition}[FoAG 1.1.B(1)]
+    \label{prop:aut_is_group}
+    \lean{CategoryPrimer.autIsGroupViaGroupoid}
+    For any $A \in \cC$, the set of invertible elements of $\text{Mor}(A,A)$ form a group, called the \textbf{automorphism group of $A$}, or $\text{Aut}(A)$.
+\end{proposition}
+
+\begin{proof}
+    \uses{prop:group_eqv_one_obj_groupoid}
+    We show that $\text{Aut}(A)$ is actually a singleton groupoid, and then the result follows from \ref{prop:group_eqv_one_obj_groupoid}:\\
+    $\text{Aut}(A)$ clearly has only one object $A$. Then for any $f, g \in \text{Aut}(A)$, we note $(f \circ g) \circ (g^{-1} \circ f^{-1}) = \text{id}_A$, i.e. $f\circ g$ is also invertible, making $\text{Aut}(A)$ closed under composition, thus a valid groupoid.
+\end{proof}
+
+\begin{proposition}[FoAG 1.1.B(2)]
+    \label{prop:aut_iso_of_iso}
+    \lean{CategoryPrimer.autIsomorphicOfIso}
+    For $A, B \in \cC$, $A \cong B \Rightarrow \text{Aut}(A) \cong \text{Aut}(B)$.
+\end{proposition}
+
+\begin{proof}
+    Given $F : A \cong B$, define the map $\phi: \text{Aut}(A) \to \text{Aut}(B)$ by $\phi(f) = F \circ f \circ F^{-1}$. This is a group homomorphism with inverse $\phi^{-1}(g) = F^{-1} \circ g \circ F$.
+\end{proof}

@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build LaTeX (latexmk)",
+      "type": "shell",
+      "command": "latexmk",
+      "options": {
+        "cwd": "${workspaceFolder}/blueprint/src"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        {
+          "owner": "latex",
+          "fileLocation": ["absolute"],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "message": 3
+          }
+        }
+      ]
+    }
+  ]
+}

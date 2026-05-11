@@ -1,0 +1,16 @@
+/.lake
+
+# Blueprint web output (generated)
+blueprint/web/
+
+# LaTeX build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.synctex\(busy\)
+*.toc
+*.bbl
+*.blg
