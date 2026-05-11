@@ -22,10 +22,10 @@ title: AG Notes
 #email: your-email@example.com
 description: by zzc
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://ddbzdnql.github.io/lean_ag_notes" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username:
-github_username: 
-repository: /
+github_username: ddbzdnql
+repository: ddbzdnql/lean_ag_notes
 
 # Build settings
 remote_theme: pages-themes/cayman@v0.2.0 

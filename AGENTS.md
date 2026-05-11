@@ -1,5 +1,8 @@
 # AGNotes — project instructions for OpenCode
 
+Repo: https://github.com/ddbzdnql/lean_ag_notes
+GitHub Pages: https://ddbzdnql.github.io/lean_ag_notes/
+
 ## Build commands
 
 ```bash
@@ -46,4 +49,11 @@ Getting this wrong silently breaks the web blueprint—the dependency graph and 
 
 ## CI
 
-- `blueprint.yml` triggers on push to `main`: builds Lean → generates blueprint → deploys to GitHub Pages.
+- `blueprint.yml` triggers on push to `main`: builds Lean → generates blueprint + doc-gen4 API docs → deploys to GitHub Pages.
+- Deployed docs let you click Lean declarations in the web blueprint to jump to doc-gen4 source documentation.
+
+## URL configuration
+
+- `blueprint/src/web.tex`: `\home{...}`, `\github{...}`, `\dochome{...}` — controls blueprint navigation and Lean decl link targets
+- `home_page/_config.yml`: `url`, `repository`, `github_username` — Jekyll homepage config
+- If repo URL changes, update all three: `web.tex`, `_config.yml`, and this file's header

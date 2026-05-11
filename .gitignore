@@ -5,6 +5,7 @@ blueprint/web/
 
 # LaTeX build artifacts
 *.aux
+*.paux
 *.fdb_latexmk
 *.fls
 *.log
